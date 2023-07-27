@@ -42,12 +42,12 @@ meta:
 
 ### Query Parameters
 
-Parameter | type  | Description
---------- |-------| -----------
-sess_presto | Session | Presto 세션
-sess_mysql | Session  | MySQL 세션
-| |
-| |
+ Parameter   | type    | Description 
+-------------|---------|-------------
+ sess_presto | Session | Presto 세션   
+ sess_mysql  | Session | MySQL 세션    
+|             |
+|             |
 
 
 # [종목 분석]
@@ -91,22 +91,18 @@ POST | radar_financial_average_us                             | 업종 평균 �
 > Response:
 
 ```json
-{
-  "result": {
+{"result": {
     "chart": {
-      "series": [
-        {
+      "series": [{
           "data": [
             [1546387200000, 39.48],
             [..., ...],
-            [1593475200000, 91.2]
-          ],
+            [1593475200000, 91.2]],
           "name": "애플 (USD)",
           "step": false,
           "type": "line",
           "yAxisIndex": 0
-        }
-      ]
+        }]
     },
     "key_value": {
       "52주최고": 198.23,
@@ -136,17 +132,15 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 ### Query Parameters
 
-Parameter | type    | Description
---------- |---------| -----------
-sess_presto | Session | Presto 세션
-sess_mysql | Session | MySQL 세션
-node_id_stock| str     | 종목 node id
-start_date| str     | 차트 조회 시작일
-end_date| str | 차트 조회 종료일
+ Parameter     | type    | Description 
+---------------|---------|-------------
+ sess_presto   | Session | Presto 세션   
+ sess_mysql    | Session | MySQL 세션    
+ node_id_stock | str     | 종목 node id  
+ start_date    | str     | 차트 조회 시작일   
+ end_date      | str     | 차트 조회 종료일   
 
 
-<img src="/Users/yeseul/PycharmProjects/slate/source/images/overview_chart.png" title="overview_chart">
-![overview_chart](/Users/yeseul/PycharmProjects/slate/source/images/overview_chart.png)
 <p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/overview_chart.png" width=700 alt="overview_chart"></p>
 
 
@@ -174,31 +168,374 @@ end_date| str | 차트 조회 종료일
 
 ### Query Parameters
 
-Parameter | type    | Description
---------- |---------| -----------
-sess_presto | Session | Presto 세션
-sess_mysql | Session | MySQL 세션
-node_id_stock| str     | 종목 node id
+ Parameter     | type    | Description 
+---------------|---------|-------------
+ sess_presto   | Session | Presto 세션   
+ sess_mysql    | Session | MySQL 세션    
+ node_id_stock | str     | 종목 node id  
 
 
-## radar_chart
-종목 한눈에 보기
+## radar_financial_us
+레이더 차트
+
+> payload:
+
+```json
+{
+  "node_id_stock": "3|2|1|1|AAPL"
+}
+```
+> Response:
+
+```json
+{"result": { "chart": {"radar": {
+        "indicator": [
+          {"max": 5, "min": 0.1, "name": "배당"},
+          {"max": 5, "min": 0.1, "name": "성장성"},
+          {"max": 5, "min": 0.1, "name": "모멘텀"},
+          {"max": 5, "min": 0.1, "name": "수익성"},
+          {"max": 5, "min": 0.1, "name": "안정성"},
+          {"max": 5, "min": 0.1, "name": "밸류에이션"}]
+      },
+      "series": [{
+          "data": [{
+              "name": "애플",
+              "value": [2, 2.5, 2, 5, 1.5, 1.5]
+            }],
+          "type": "radar"
+        }]
+    },
+    "key_value": {
+      "dividend": "낮은편",
+      "growth": "평균수준",
+      "momentum": "낮은편",
+      "profitability": "매우 높은편",
+      "stability": "낮은편",
+      "valuation": "낮은편"
+    }
+  },
+  "success": true
+}
+```
 
 ### Query Parameters
 
-Parameter | type    | Description
---------- |---------| -----------
-sess_mysql | Session | MySQL 세션
-node_id_stock| str     | 종목 node id
+ Parameter     | type    | Description 
+---------------|---------|-------------
+ sess_mysql    | Session | MySQL 세션    
+ node_id_stock | str     | 종목 node id  
 
-> <img src="/Users/yeseul/PycharmProjects/slate/source/images/radar_chart.png" title="radar_chart">
+<img src="/Users/yeseul/PycharmProjects/slate/source/images/radar_chart.png" title="radar_chart">
 
 
+## radar_financial_financial_average_us
+업종 평균 레이더 차트
+
+> payload:
+
+```json
+{
+  "node_id_stock": "3|2|1|1|AAPL"
+}
+```
+
+> Response:
+
+```json
+{"result": {"chart": {"radar": {
+    "indicator": [
+          {"max": 5, "min": 0.1, "name": "배당"},
+          {"max": 5, "min": 0.1, "name": "성장성"},
+          {"max": 5, "min": 0.1, "name": "모멘텀"},
+          {"max": 5, "min": 0.1, "name": "수익성"},
+          {"max": 5, "min": 0.1, "name": "안정성"},
+          {"max": 5, "min": 0.1, "name": "밸류에이션"}
+        ]},
+      "series": [{
+          "data": [{
+              "name": "애플",
+              "value": [0.909091, 2.60227, 2.36364, 2.26136, 3.90909, 1.85227]
+            }],
+          "type": "radar"
+        }]
+    },
+    "key_value": {
+      "dividend": "매우 낮은편",
+      "growth": "평균수준",
+      "momentum": "평균수준",
+      "profitability": "평균수준",
+      "stability": "높은편",
+      "valuation": "낮은편"
+    }
+  },
+  "success": true
+}
+```
+
+### Query Parameters
+
+ Parameter     | type    | Description 
+---------------|---------|-------------
+ sess_mysql    | Session | MySQL 세션    
+ node_id_stock | str     | 종목 node id  
+
+<img src="/Users/yeseul/PycharmProjects/slate/source/images/radar_chart_avg.png" title="radar_chart_avg">
+
+
+
+## correlation_company_graph_info_us
+연관 기업 분석 그래프 DB - 그래프 DB 연관 기업 분석
+
+
+> payload:
+
+```json
+{
+  "node_id_stock": "3|2|1|1|AAPL"
+}
+```
+
+> Response:
+
+```json
+{"result": {
+    "company": {
+      "node_id": "3|2|1|1|AAPL",
+      "종목코드": "AAPL",
+      "회사명": "애플"
+    },
+    "keywords": {
+      "keyword_list": [
+        "아이패드", "팀쿡", "스마트폰", "스티브 잡스", "애플", "아이폰", "ESG", "자율주행", "전기차"
+      ]
+    },
+    "market_type": {
+      "시장구분": "나스닥"
+    },
+    "selected_keyword": {
+      "keyword": "아이패드"
+    },
+    "table": {
+      "columns": [
+        {"caption": "종목코드", "dataField": "symbol", "dataType": "string"},
+        {"caption": "종목명", "dataField": "name_ko_short", "dataType": "string"},
+        {"caption": "시가총액(억원)", "dataField": "market_cap", "dataType": "number"},
+        {"caption": "전일종가", "dataField": "price", "dataType": "number"},
+        {"caption": "1D(%)", "dataField": "pct_1d", "dataType": "number"},
+        {"caption": "1W(%)", "dataField": "pct_1w", "dataType": "number"},
+        {"caption": "1M(%)", "dataField": "pct_1m", "dataType": "number"},
+        {"caption": "3M(%)", "dataField": "pct_3m", "dataType": "number"},
+        {"caption": "6M(%)", "dataField": "pct_6m", "dataType": "number"},
+        {"caption": "1Y(%)", "dataField": "pct_1y", "dataType": "number"},
+        {"caption": "YTD(%)", "dataField": "pct_ytd", "dataType": "number"},
+        {"caption": "주요키워드", "dataField": "keywords", "dataType": "list"},
+        {"caption": "국가", "dataField": "country", "dataType": "string"}
+      ],
+      "rows": [
+        {
+          "country": "1",
+          "keywords": [
+            "아이패드", "팀쿡", "스마트폰", "스티브 잡스", "애플", "아이폰", "ESG", "자율주행", "전기차"
+          ],
+          "market_cap": 39002326, "market_cap_usd": 3045391340000,
+          "name_ko_short": "애플", "node_id_stock": "3|2|1|1|AAPL",
+          "pct_1d": 0.45, "pct_1m": 4.51, "pct_1w": -0.06, "pct_1y": 26.59, "pct_3m": 18.23, "pct_6m": 36.49, "pct_ytd": 54.81, "price": 194,
+          "symbol": "AAPL"
+        },
+        {
+          "country": "0",
+          "keywords": [
+            "스마트폰", "패키지솔루션", "테슬라카메라모듈", "카메라", "테슬라", "코로나19", "전장용MLCC",
+            "적층세라믹콘덴서", "자율주행", "아이패드", "애플", "스마트폰부품", "무선충전기", "무선충전", "車전장", "LED", "IT부품", "5G", "수동소자", "콘덴서", "MLCC", "카메라모듈"
+          ],
+          "market_cap": 107633, "market_cap_usd": null,
+          "name_ko_short": "삼성전기", "node_id_stock": "3|1|1|1|009150",
+          "pct_1d": -3.22, "pct_1m": -0.21, "pct_1w": -5.94, "pct_1y": 1.48, "pct_3m": 3.59, "pct_6m": -1.97, "pct_ytd": 8.75, "price": 144100,
+          "symbol": "009150"
+        },
+        {
+          "...": "..."
+        }],
+      "table_length": 12}
+  },
+  "success": true
+}
+
+```
+
+### Query Parameters
+
+ Parameter     | type    | Description 
+---------------|---------|-------------
+ sess_mysql    | Session | MySQL 세션    
+ node_id_stock | str     | 종목 node id  
+
+
+## correlation_company_table_us
+연관 기업 분석 그래프 DB - 그래프 DB 미국 연관 기업 분석 확장, 업종 삭제 & 키워드 기반
+
+
+> payload:
+
+```json
+{
+  "node_id_stock": "3|2|1|1|AAPL",
+  "search_keywords": [
+    "아이폰"
+  ]
+}
+```
+
+> Response:
+
+```json
+{"result": {
+    "node_id_company": {
+      "종목노드ID": "3|2|1|1|AAPL"
+    },
+    "selected_keywords": {
+      "keywords": ["아이폰"]
+    },
+    "table": {
+      "columns": [
+        {"caption": "종목코드", "dataField": "symbol", "dataType": "string"},
+        {"caption": "종목명", "dataField": "name_ko_short", "dataType": "string"},
+        {"caption": "시가총액(억원)", "dataField": "market_cap", "dataType": "number"},
+        {"caption": "전일종가", "dataField": "price", "dataType": "number"},
+        {"caption": "1D(%)", "dataField": "pct_1d", "dataType": "number"},
+        {"caption": "1W(%)", "dataField": "pct_1w", "dataType": "number"},
+        {"caption": "1M(%)", "dataField": "pct_1m", "dataType": "number"},
+        {"caption": "3M(%)", "dataField": "pct_3m", "dataType": "number"}, 
+        {"caption": "6M(%)", "dataField": "pct_6m", "dataType": "number"},
+        {"caption": "1Y(%)", "dataField": "pct_1y", "dataType": "number"},
+        {"caption": "YTD(%)", "dataField": "pct_ytd", "dataType": "number"},
+        {"caption": "주요키워드", "dataField": "keywords", "dataType": "list"},
+        {"caption": "국가", "dataField": "country", "dataType": "string"}
+      ],
+      "rows": [
+        {
+          "country": "1",
+          "keywords": [
+            "아이패드", "팀쿡", "스마트폰", "스티브 잡스", "애플", "아이폰", "ESG", "자율주행", "전기차"
+          ],
+          "market_cap": 39002326, "market_cap_usd": 3045391340000,
+          "name_ko_short": "애플", "node_id_stock": "3|2|1|1|AAPL",
+          "pct_1d": 0.45, "pct_1m": 4.51, "pct_1w": -0.06, "pct_1y": 26.59, "pct_3m": 18.23, "pct_6m": 36.49, "pct_ytd": 54.81, 
+          "price": 194, "symbol": "AAPL"
+        },
+        {
+          "country": "0",
+          "keywords": [
+            "마이크론", "XR", "화웨이", "헬스케어", "폴더블폰", "파운드리", "태블릿", "타이젠", "퀄컴AP", "퀄컴", "카메라모듈", "전기전자", "자율주행", "이재용", "이미지센서", "웨이퍼", "애플", "아이폰", "시스템반도체", "스마트기기", 
+            "서버", "TV", "배터리폭발", "무선통신", "메타버스", "메모리반도체", "메모리", "딥러닝", "도시바", "PC", "LCD", "IT부품", "D램", "AP", "OLED", "6G", "5G", "3D낸드", "가전기기", "스마트폰", "디스플레이", "반도체"
+          ],
+          "market_cap": 4166908, "market_cap_usd": null,
+          "name_ko_short": "삼성전자", "node_id_stock": "3|1|1|1|005930",
+          "pct_1d": -0.29, "pct_1m": -3.59, "pct_1w": -2.65, "pct_1y": 13.13, "pct_3m": 8.89, "pct_6m": 9.23, "pct_ytd": 25.77,
+          "price": 69800, "symbol": "005930"
+        },
+        {"...":  "..."}
+      ],
+      "table_length": 15
+    }
+  },
+  "success": true
+}
+```
+
+### Query Parameters
+
+ Parameter       | type    | Description 
+-----------------|---------|-------------
+ sess_mysql      | Session | MySQL 세션    
+ node_id_stock   | str     | 종목 node id  
+ search_keywords | list    | 검색 키워드 리스트  
 
 # 주요 산업 지표
+종목이 소속된 업종(로이터->WI26매칭)의 차트북 반환
+
+> payload:
+
+```json
+{
+  "node_id_stock": "3|2|1|1|AAPL"
+}
+```
+
+> Response:
+
+```json
+{"result": {
+    "chartbook": [{
+        "book_id": 16, "chart_id": 0,
+        "legend": {
+          "bottom": "bottom",
+          "show": true
+        },
+        "series": [{
+            "book_id": 16, "chart_id": 0,
+            "color": "#7bb142",
+            "data": [],
+            "name": "가전 수출액(천USD)", "node_id": "1|4|1|2|3|31", "series_id": 0,
+            "tag": "매크로", "type": "bar", "yAxisIndex": 0},
+          {"book_id": 16, "chart_id": 0,
+            "color": "#2b5034",
+            "data": [],
+            "name": "YoY(%)", "node_id": "1|4|1|2|3|32", "series_id": 1,
+            "showSymbol": true, "step": false,
+            "tag": "매크로", "type": "line", "yAxisIndex": 1}],
+        "title": [{
+            "left": "center",
+            "subtext": "부제목",
+            "text": "가전제품 수출"},
+          { "left": "right",
+            "text": "출처: 한국무역협회",
+            "textStyle": {
+              "color": "gray", "fontSize": 13, "fontWeight": "lighter"},
+            "top": "bottom"}],
+        "tooltip": {
+          "formatter": "abcde", "trigger": "none"
+        },
+        "xAxis": {
+          "max": 1690416000000, "min": 1595808000000, "type": "time"
+        },
+        "yAxis": [{
+            "axisLabel": {"formatter": "{value}"},
+            "book_id": 16, "chart_id": 0,
+            "max": null, "min": null, "position": "left", "type": "value"
+          },
+          {"axisLabel": {"formatter": "{value}"},
+            "book_id": 16, "chart_id": 0, 
+            "max": 100, "min": -100, "position": "right", "type": "value"
+          }]}]
+  },
+  "success": true
+}
+```
+
+### Query Parameters
+
+ Parameter     | type    | Description 
+---------------|---------|-------------
+ sess_mysql    | Session | MySQL 세션    
+ sess_presto   | Session | Presto 세션   
+ node_id_stock | str     | 종목 node id  
+
+
+<p align="center">
+  <img alt="cb1" src="/Users/yeseul/PycharmProjects/slate/source/images/chartbook1.png" width="45%">
+&nbsp; &nbsp; &nbsp; &nbsp;
+  <img alt="cb2" src="/Users/yeseul/PycharmProjects/slate/source/images/chartbook2.png" width="45%">
+</p>
+<p align="center">
+  <img alt="cb2" src="/Users/yeseul/PycharmProjects/slate/source/images/chartbook3.png" width="45%">
+&nbsp; &nbsp; &nbsp; &nbsp;
+  <img alt="cb3" src="/Users/yeseul/PycharmProjects/slate/source/images/chartbook4.png" width="45%">
+</p>
 
 
 # 상관관계
+
 
 
 
