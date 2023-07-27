@@ -140,7 +140,7 @@ POST | radar_financial_average_us                             | 업종 평균 �
  start_date    | str     | 차트 조회 시작일   
  end_date      | str     | 차트 조회 종료일   
 
-
+### Chart
 <p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/overview_chart.png" width=700 alt="overview_chart"></p>
 
 
@@ -225,6 +225,7 @@ POST | radar_financial_average_us                             | 업종 평균 �
  sess_mysql    | Session | MySQL 세션    
  node_id_stock | str     | 종목 node id  
 
+### Chart
 <img src="/Users/yeseul/PycharmProjects/slate/source/images/radar_chart.png" title="radar_chart">
 
 
@@ -279,6 +280,7 @@ POST | radar_financial_average_us                             | 업종 평균 �
  sess_mysql    | Session | MySQL 세션    
  node_id_stock | str     | 종목 node id  
 
+### Chart
 <img src="/Users/yeseul/PycharmProjects/slate/source/images/radar_chart_avg.png" title="radar_chart_avg">
 
 
@@ -453,6 +455,7 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 # 주요 산업 지표
 종목이 소속된 업종(로이터->WI26매칭)의 차트북 반환
+## 주요 산업 지표
 
 > payload:
 
@@ -535,12 +538,262 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 
 # 상관관계
+종목의 종가와 매크로 변수의 일대다 상관계수 반환
+## 상관관계
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/correlation_price_us`
 
+> payload:
+
+```json
+{
+  "node_id_stock": "3|2|1|1|AAPL"
+}
+```
+
+> Response:
+
+```json
+{"result": {
+    "table": {
+      "columns": [
+        {"caption": "노드 ID", "dataField": "node_id_b", "dataType": "string", "visible": false},
+        {"caption": "분류", "dataField": "tag_b", "dataType": "string"},
+        {"caption": "이름", "dataField": "name_b", "dataType": "string"},
+        {"caption": "상관계수", "dataField": "corr", "dataType": "number", "format": {"precision": 2, "type": "fixedPoint"}},
+        {"caption": "샘플 개수", "dataField": "n_samples", "dataType": "number"}
+      ],
+      "rows": [
+        {
+          "corr": 0.2374338395465267,
+          "data_table_a": "ossy_gfinance_data.StockDaily", "data_table_b": "ossy_finance_data.GlobalIndexRefinitivDaily",
+          "n_samples": 1974,
+          "name_a": "애플", "name_b": "CRB TR 지수",
+          "node_id_a": "3|2|1|1|AAPL", "node_id_b": "1|3|1|1",
+          "symbol_a": "AAPL", "symbol_b": ".TRCCRBTR",
+          "tag_a": "미국종목", "tag_b": "매크로"
+        },
+        {
+          "corr": -0.07115988902533889,
+          "data_table_a": "ossy_gfinance_data.StockDaily", "data_table_b": "ossy_finance_data.CofixDaily",
+          "n_samples": 74,
+          "name_a": "애플", "name_b": "COFIX 금리 [잔액기준]",
+          "node_id_a": "3|2|1|1|AAPL", "node_id_b": "1|1|2|3|1",
+          "symbol_a": "AAPL", "symbol_b": "1",
+          "tag_a": "미국종목", "tag_b": "매크로"
+        },
+        {"...":  "..."}
+      ]}
+  },
+  "success": true
+}
+```
+
+
+### Query Parameters
+
+ Parameter     | type    | Default  | Description 
+---------------|---------|----------|-------------
+ sess_mysql    | Session |          | MySQL 세션    
+ sess_presto   | Session |          | Presto 세션   
+ node_id_stock | str     |          | 종목 node id  
+ start_date    | str     | 10년 전 일자 | 차트 조회 시작일   
+ end_date      | str     | 오늘       | 차트 조회 종료일   
+ min_samples   | int     | 12       | 최소 샘플 개수    
 
 
 
 # Financial Highlight
 
+## 실적 요약
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_summary_us`
+
+> payload:
+
+```json
+{
+  "node_id_stock": "3|2|1|1|AAPL"
+}
+```
+
+> Response:
+
+```json
+{"result": {
+    "date_value": {
+      "q_month": "4", "q_year": "2023", "y_year": "2022"
+    },
+    "summary_table": {
+      "rows": [
+        {"mark": "-", "output": "5.54"},
+        {"mark": "-", "output": "21.37"},
+        {"mark": "-", "output": "1.87"},
+        {"mark": "-", "output": "2.51"},
+        {"mark": "-", "output": "19.05"},
+        {"mark": "-", "output": "3.4"},
+        {"mark": "-", "output": "19.46"},
+        {"mark": "+", "output": "9.63"},
+        {"mark": "+", "output": "49.82"},
+        {"mark": "+", "output": "7.79"},
+        {"mark": "+", "output": "5.41"}
+      ]}
+  },
+  "success": true
+}
+```
+
+### Query Parameters
+
+ Parameter     | type    | Default  | Description 
+---------------|---------|----------|-------------
+ sess_mysql    | Session |          | MySQL 세션    
+ sess_presto   | Session |          | Presto 세션   
+ node_id_stock | str     |          | 종목 node id  
+
+
+
+## 주요 재무 특이사항
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_statement_anomaly_detection_us`
+
+> payload:
+
+```json
+{
+  "node_id_stock": "3|2|1|1|MSFT",
+  "threshold": 1.6
+}
+```
+
+> Response:
+
+```json
+{"result": {
+    "key_value": {"date": "2023년 3월"},
+    "table": {
+      "columns": [
+        {"caption": "index", "dataField": "index", "dataType": "string"},
+        {"caption": "value", "dataField": "value", "dataType": "string"}
+      ],
+      "rows": [
+        {"index": "현금의증가", "value": "+"}
+      ]}
+  },
+  "success": true
+}
+```
+
+### Query Parameters
+
+ Parameter     | type    | Default | Description 
+---------------|---------|---------|-------------
+ sess_mysql    | Session |         | MySQL 세션    
+ sess_presto   | Session |         | Presto 세션   
+ node_id_stock | str     |         | 종목 node id  
+ threshold     | int     | 1.6     | Z-score 임계값 
+
+### Output Example
+
+ index | value 
+-------|-------
+ 현금의증가 | +     
+
+
+
+## 주요 재무 특이사항 - 상세 조회
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_statement_anomaly_detection_detail_graph_us`
+
+> payload:
+
+```json
+{
+  "node_id_stock": "3|2|1|1|MSFT",
+  "item": "현금의증가"
+}
+```
+
+> Response:
+
+```json
+{"result": {
+    "chart": {
+      "series": [
+        {"data": ["..."], "name": "매출액", "step": false, "type": "line", "yAxisIndex": 0},
+        {"data": ["..."], "name": "매출액 추세", "step": false, "type": "line", "yAxisIndex": 0},
+        {"data": ["..."], "name": "매출액 계절성", "step": false, "type": "line", "yAxisIndex": 1},
+        {"data": ["..."], "name": "매출액 오차", "step": false, "type": "line", "yAxisIndex": 1}
+      ],
+      "xAxis": {"type": "time"},
+      "yAxis": [
+        {"name": "", "scale": "true", "type": "value"},
+        {"name": "", "scale": "true", "type": "value"}
+      ]}
+  },
+  "success": true
+}
+```
+
+### Query Parameters
+
+ Parameter     | type    | Description 
+---------------|---------|-------------
+ sess_mysql    | Session | MySQL 세션    
+ sess_presto   | Session | Presto 세션   
+ node_id_stock | str     | 종목 node id  
+ item          | str     | 국문 재무계정명    
+
+<img src="/Users/yeseul/PycharmProjects/slate/source/images/anomaly_detail.png" title="anomaly_detail">
+
+
+## 주요 재무 특이사항 - 이상치 판단 범주 조회
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_statement_anomaly_detection_range_graph_us`
+
+> payload:
+
+```json
+{
+  "node_id_stock": "3|2|1|1|MSFT",
+  "item": "현금의증가",
+  "threshold": 1.6
+}
+```
+
+> Response:
+
+```json
+{"result": {
+    "chart": {
+      "series": [
+        {"data": ["..."], "name": "현금의증가", "step": false, "type": "line"},
+        {"data": ["..."], "name": "정상추정범위", "step": false, "type": "line"},
+        {"data": ["..."], "name": "정상추정범위", "step": false, "type": "line"}
+      ],
+      "xAxis": {"type": "time"},
+      "yAxis": [{"name": "", "scale": "true", "type": "value"}
+      ]}
+},
+  "success": true
+}
+```
+
+### Query Parameters
+
+ Parameter     | type    | Default | Description 
+---------------|---------|---------|-------------
+ sess_mysql    | Session |         | MySQL 세션    
+ sess_presto   | Session |         | Presto 세션   
+ node_id_stock | str     |         | 종목 node id  
+ item          | str     |         | 국문 재무계정명    
+ threshold     | int     | 1.6     | Z-score 임계값 
+
+<img src="/Users/yeseul/PycharmProjects/slate/source/images/anomaly_range.png" title="anomaly_range">
+
+
+
+## 재무제표 통합
 
 
 # 주주 정보
