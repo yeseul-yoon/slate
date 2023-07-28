@@ -68,6 +68,9 @@ POST | radar_financial_average_us                             | 업종 평균 �
 ### 화면 예시
 <p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/overview.png" width=700 alt="overview"></p>
 
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/overview_us`
+
 > payload:
 
 ```json
@@ -101,9 +104,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
 }
 ```
 
-### Request URL
-`http://dev-ra.shinyoung.com/api/s12_us_stock/overview_us`
-
 ### Query Parameters
 
  Parameter     | type    | Description 
@@ -119,6 +119,9 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 
 ## business_summary_us
+
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/business_summary_us`
 
 > payload:
 
@@ -139,9 +142,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
 }
 ```
 
-### Request URL
-`http://dev-ra.shinyoung.com/api/s12_us_stock/business_summary_us`
-
 ### Query Parameters
 
  Parameter     | type    | Description 
@@ -153,6 +153,10 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 ## radar_financial_us
 
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/radar_financial_us`
+
+레이더 차트
 > payload:
 
 ```json
@@ -190,11 +194,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
 }
 ```
 
-### Request URL
-`http://dev-ra.shinyoung.com/api/s12_us_stock/radar_financial_us`
-
-레이더 차트
-
 ### Query Parameters
 
  Parameter     | type    | Description 
@@ -207,6 +206,9 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 
 ## radar_financial_financial_average_us
+
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/radar_financial_financial_average_us`
 
 > payload:
 
@@ -246,10 +248,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
 }
 ```
 
-### Request URL
-`http://dev-ra.shinyoung.com/api/s12_us_stock/radar_financial_financial_average_us`
-
-
 ### Query Parameters
 
  Parameter     | type    | Description 
@@ -263,6 +261,14 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 
 ## correlation_company_graph_info_us
+
+### 화면 예시
+<p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/company_graph_db.png" width=700 alt=company_graph_db> </p>
+
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/correlation_company_graph_info_us`
+
+연관 기업 분석 그래프 DB - 그래프 DB 연관 기업 분석
 
 > payload:
 
@@ -320,12 +326,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
 }
 
 ```
-
-### Request URL
-`http://dev-ra.shinyoung.com/api/s12_us_stock/correlation_company_graph_info_us`
-
-연관 기업 분석 그래프 DB - 그래프 DB 연관 기업 분석
-
 
 ### Query Parameters
 
@@ -407,8 +407,15 @@ POST | radar_financial_average_us                             | 업종 평균 �
  node_id_stock   | str     | 종목 node id  
  search_keywords | list    | 검색 키워드 리스트  
 
+
 # 주요 산업 지표
+
 ## 주요 산업 지표
+
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/chartbook_us`
+
+종목이 소속된 업종(로이터->WI26매칭)의 차트북 반환
 
 > payload:
 
@@ -446,11 +453,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
 }
 ```
 
-### Request URL
-`http://dev-ra.shinyoung.com/api/s12_us_stock/chartbook_us`
-
-종목이 소속된 업종(로이터->WI26매칭)의 차트북 반환
-
 ### Query Parameters
 
  Parameter     | type    | Description 
@@ -475,6 +477,11 @@ POST | radar_financial_average_us                             | 업종 평균 �
 # 상관관계
 
 ## 상관관계
+
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/correlation_price_us`
+
+종목의 종가와 매크로 변수의 일대다 상관계수 반환
 
 > payload:
 
@@ -520,11 +527,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
 }
 ```
 
-### Request URL
-`http://dev-ra.shinyoung.com/api/s12_us_stock/correlation_price_us`
-
-종목의 종가와 매크로 변수의 일대다 상관계수 반환
-
 ### Query Parameters
 
  Parameter     | type    | Default  | Description 
@@ -541,6 +543,9 @@ POST | radar_financial_average_us                             | 업종 평균 �
 # Financial Highlight
 
 ## 실적 요약
+
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_summary_us`
 
 > payload:
 
@@ -575,8 +580,7 @@ POST | radar_financial_average_us                             | 업종 평균 �
   "success": true
 }
 ```
-### Request URL
-`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_summary_us`
+
 
 ### 화면 예시
 <p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/fin_summary.png" width=700 alt="fin_summary"></p>
@@ -593,6 +597,9 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 
 ## 주요 재무 특이사항
+
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_statement_anomaly_detection_us`
 
 > payload:
 
@@ -620,9 +627,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
   "success": true
 }
 ```
-
-### Request URL
-`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_statement_anomaly_detection_us`
 
 ### 화면 예시
 <p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/fin_anomaly.png" width=700 alt="fin_anomaly"></p>
@@ -799,6 +803,9 @@ POST | radar_financial_average_us                             | 업종 평균 �
 }
 ```
 
+### 화면 예시
+<p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/fin_stat.png" width=700 alt="fin_stat"></p>
+
 ### Query Parameters
 
  Parameter     | type    | Default | Description 
@@ -812,8 +819,194 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 # 주주 정보
 
+## 주요 주주 정보
+
+### 화면 예시
+<p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/shareholders.png" width=700 alt="shareholders"></p>
+
+
+## 주요 주주 네트워크
+
+### 화면 예시
+<p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/shareholders_network.png" width=700 alt="shareholders_network"></p>
+
 
 # Company graph DB
 
 
 # [스크리너]
+
+ type   | API명                          | 설명          
+--------|-------------------------------|-------------
+ POST   | get_list_cmp_tk_us            | 최종 종목 티커 반환 
+ POST   | chartbook_get_result_chart_us | 종목 평균 상대수익률 
+ POST   | get_result_table_us           | 종목 결과 테이블   
+ GET    | get_sc_item_data_us           | 항목별 전체 데이터  
+ GET    | get_user_condition_us         | 사용자 지정조건 리스트 불러오기
+ GET    | load_user_condition_us        | 사용자 조건 불러오기
+ POST   | save_user_condition_us        | 사용자 조건 저장
+ PUT    | modify_user_condition_us      | 사용자 조건 수정
+ DELETE | delete_user_condition_us      | 사용자 조건 삭제
+
+# 검색
+
+## 검색 조건
+
+### Request URL
+`http://dev-ra.shinyoung.com/api/f12_us_stock_screener/get_list_cmp_tk_us`
+
+> payload:
+
+```json
+{
+  "market": "ALL",
+  "sector": "ALL",
+  "market_cap": "200000|3500000",
+  "finance_list": ["AREV|range|1|100000|700000", "AOPMGNPCT|range|1|1|50"],
+  "multiple_list": ["QTLE|range|5|100"],
+  "cagr_list": ["AEBIT|range|3|0|100"],
+  "continuity_list": ["ADIVSHR|>=|1"]
+}
+```
+
+> Response:
+
+```json
+{"result": {
+    "list": [
+      "UNH",
+      "AAPL",
+      "COST"
+    ]
+  },
+  "success": true
+}
+```
+
+### Query Parameters
+
+ Parameter       | type    | Default | Description      
+-----------------|---------|---------|------------------
+ sess_mysql      | Session |         | MySQL 세션         
+ sess_presto     | Session |         | Presto 세션        
+ market          | str     | ALL     | 거래소 조건           
+ sector          | str     | ALL     | 로이터 업종 조건        
+ market_cap      | str     |         | 시가총액(백만달러) 범위 조건 
+ finance_list    | list    |         | 재무 조건 리스트        
+ multiple_list   | list    |         | 멀티플 조건 리스트       
+ continuity_list | list    |         | 연속 조건 리스트        
+ cagr_list       | list    |         | Cagr 조건 리스트      
+
+
+## 검색 결과
+
+### Request URL
+`http://dev-ra.shinyoung.com/api/f12_us_stock_screener/get_result_table_us`
+
+> payload:
+
+```json
+{
+  "list_cmp_tk": ["UNH", "AAPL", "COST"]
+}
+```
+
+> Response:
+
+```json
+{"result": {"length": 3,
+    "table": {"columns": [
+        {"caption": "종목티커", "dataField": "symbol", "dataType": "string"},
+        {"caption": "종목명", "dataField": "name_ko_short", "dataType": "string"},
+        {"caption": "시가총액(USD)", "dataField": "market_cap_usd", "dataType": "number"},
+        {"caption": "전일종가(USD)", "dataField": "price", "dataType": "number"},
+        {"caption": "1D(%)", "dataField": "pct_1d", "dataType": "number"},
+        {"caption": "1W(%)", "dataField": "pct_1w", "dataType": "number"},
+        {"caption": "1M(%)", "dataField": "pct_1m", "dataType": "number"},
+        {"caption": "3M(%)", "dataField": "pct_3m", "dataType": "number"},
+        {"caption": "6M(%)", "dataField": "pct_6m", "dataType": "number"},
+        {"caption": "1Y(%)", "dataField": "pct_1y", "dataType": "number"},
+        {"caption": "YTD(%)", "dataField": "pct_ytd", "dataType": "number"},
+        {"caption": "매출액(백만USD)", "dataField": "매출액", "dataType": "number"},
+        {"caption": "영업이익(백만USD)", "dataField": "영업이익", "dataType": "number"},
+        {"caption": "당기순이익(백만USD)", "dataField": "당기순이익", "dataType": "number"}],
+      "rows": [
+        {"market_cap": 39002326, "market_cap_usd": 3045391340000, "name_ko_short": "애플", 
+          "pct_1d": 0.45, "pct_1m": 4.51, "pct_1w": -0.06, "pct_1y": 26.59, "pct_3m": 18.23, "pct_6m": 36.49, "pct_ytd": 54.81, "price": 194, 
+          "symbol": "AAPL", "당기순이익": 99803, "매출액": 394328, "영업이익": 119437},
+        {"market_cap": 3207680, "market_cap_usd": 250463093000, "name_ko_short": "코스트코 홀세일",
+          "pct_1d": 0.22, "pct_1m": 7.98, "pct_1w": 2.1, "pct_1y": 6.81, "pct_3m": 12.33, "pct_6m": 15.14, "pct_ytd": 24.69, "price": 565,
+          "symbol": "COST", "당기순이익": 5844, "매출액": 226954, "영업이익": 7793},
+        {"market_cap": 6092189, "market_cap_usd": 475692171000, "name_ko_short": "유나이티드헬스 그룹",
+          "pct_1d": 0.44, "pct_1m": 6.65, "pct_1w": 2.19, "pct_1y": -3.5, "pct_3m": 3.86, "pct_6m": 3.74, "pct_ytd": -1.49, "price": 511,
+          "symbol": "UNH", "당기순이익": 20120, "매출액": 324162, "영업이익": 28435}]
+    }},
+  "success": true
+}
+```
+
+### Query Parameters
+
+ Parameter   | type | Default | Description 
+-------------|------|---------|-------------
+ list_cmp_tk | list |         | 종목 티커 리스트   
+
+### 테이블
+<p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/screener_table.png" width=700 alt="screener_table"></p>
+
+
+## 종목 평균 상대수익률
+
+> payload:
+
+```json
+{
+  "list_cmp_tk": ["UNH", "AAPL", "COST"],
+  "chart_range": "12"
+}
+```
+
+> Response:
+
+```json
+{"result": {
+    "chart": {
+      "series": [
+        {"data": ["...","..."],
+          "name": "Port", "step": false, "type": "line", "yAxisIndex": 0},
+        {"data": ["...","..."],
+          "name": "S&P500", "step": false, "type": "line", "yAxisIndex": 0},
+        {"data": ["...","..."],
+          "name": "NASDAQ100", "step": false, "type": "line", "yAxisIndex": 0},
+        {"data": ["...","..."],
+          "name": "DOW30", "step": false, "type": "line", "yAxisIndex": 0}],
+      "tooltip": {"trigger": "axis"},
+      "xAxis": {"type": "time"},
+      "yAxis": [{"name": "시작일(100)", "type": "value"}]
+    }},
+  "success": true
+}
+```
+
+### Query Parameters
+
+ Parameter   | type | Default | Description        
+-------------|------|---------|--------------------
+ list_cmp_tk | list |         | 종목 티커 리스트          
+ chart_range | str  | 12      | 종목 평균 상대 수익률 차트 범위 
+
+
+### 차트
+<p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/screener_chart.png" width=700 alt="screener_chart"></p>
+
+
+# 사용자 조건
+
+## 저장
+
+## 불러오기
+
+## 수정
+
+## 삭제
+
