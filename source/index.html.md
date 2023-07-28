@@ -47,18 +47,18 @@ meta:
 type | API명                                                   | 설명
 ---- |--------------------------------------------------------| -----------
 POST | business_summary_us                                    | 기업 개요, 현황 정보
-POST | chartbook_us                                           | 차트북
-POST | correlation_company_graph_info_us                      | 연관 기업 분석 그래프DB 
-POST | correlation_company_graph_table_us                     | 연관 기업 분석 그래프DB
-POST | correlation_price_us                                   | 경제지표 상관관계 - 주가
-POST | financial_statement_us                                 | 재무제표 통합 API
-POST | financial_statement_anomaly_detection_us               | 이상치탐색 (Anomaly Detection)
-POST | financial_statement_anomaly_detection_detail_graph_us  | 이상치탐색 데이터 상세 조회
-POST | financial_statement_anomaly_detection_range_graph_us   | 이상치탐색 데이터 상세 조회
-POST | financial_summary_us                                   | 재무제표 실적 요약
 POST | overview_us                                            | 기본 정보
 POST | radar_financial_us                                     | 레이더 차트
 POST | radar_financial_average_us                             | 업종 평균 레이더 차트
+POST | correlation_company_graph_info_us                      | 연관 기업 분석 그래프DB 
+POST | correlation_company_graph_table_us                     | 연관 기업 분석 그래프DB
+POST | chartbook_us                                           | 차트북
+POST | correlation_price_us                                   | 경제지표 상관관계 - 주가
+POST | financial_summary_us                                   | 재무제표 실적 요약
+POST | financial_statement_anomaly_detection_us               | 이상치탐색 
+POST | financial_statement_anomaly_detection_detail_graph_us  | 이상치탐색 데이터 상세 조회
+POST | financial_statement_anomaly_detection_range_graph_us   | 이상치탐색 데이터 상세 조회
+POST | financial_statement_us                                 | 재무제표 통합 API
 
 
 # 기본 정보
@@ -650,6 +650,9 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 ## 주요 재무 특이사항 - 상세 조회
 
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_statement_anomaly_detection_detail_graph_us`
+
 > payload:
 
 ```json
@@ -679,9 +682,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
   "success": true
 }
 ```
-
-### Request URL
-`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_statement_anomaly_detection_detail_graph_us`
 
 ### Query Parameters
 
@@ -803,9 +803,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
 }
 ```
 
-### 화면 예시
-<p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/fin_stat.png" width=700 alt="fin_stat"></p>
-
 ### Query Parameters
 
  Parameter     | type    | Default | Description 
@@ -815,6 +812,10 @@ POST | radar_financial_average_us                             | 업종 평균 �
  node_id_stock | str     |         | 종목 node id  
  item          | str     |         | 국문 재무계정명    
  threshold     | int     | 1.6     | Z-score 임계값 
+
+### 화면 예시
+<p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/fin_stat.png" width=700 alt="fin_stat"></p>
+
 
 
 # 주주 정보
