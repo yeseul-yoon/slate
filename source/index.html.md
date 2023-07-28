@@ -7,9 +7,6 @@ language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of
 toc_footers:
   - <a href='#'>신영증권 미래금융팀</a>
 
-includes:
-  - errors
-
 search: true
 
 code_clipboard: true
@@ -24,35 +21,28 @@ meta:
 
 로보애널리스트 미국 주식 [종목 분석]&[스크리너] API 정의 문서입니다.
 
-[개발계](dev-ra.shinyoung.com/api)
+[개발계 swagger](dev-ra.shinyoung.com/api)
 
 
 # Batch
+
 ## global_stock_batch
 
-신규 추가 목록
+### 신규 추가 목록
 
-`get_screener_market_data`
+- `get_screener_market_data`
+  - BatchGlobalScreenerMarketData
+  - 미국 종목 종목별 가격 변화율 저장
 
-`get_stock_daily`
+<br>
 
-`koscom.robo_analyst.analysis.g1_stock_screener.global_screener_data.get_screener_market_data`
-
-`koscom.robo_analyst.analysis.g1_stock_screener.global_screener_data.get_stock_daily`
-
-### Query Parameters
-
- Parameter   | type    | Description 
--------------|---------|-------------
- sess_presto | Session | Presto 세션   
- sess_mysql  | Session | MySQL 세션    
-|             |
-|             |
+- `get_stock_daily`
+  - BatchGlobalScreenerStockDaily
+  - 미국 종목 2018.06.01 이후 가격 데이터 저장
+  
 
 
 # [종목 분석]
-
-# 기본 정보
 
 type | API명                                                   | 설명
 ---- |--------------------------------------------------------| -----------
@@ -71,12 +61,12 @@ POST | radar_financial_us                                     | 레이더 차트
 POST | radar_financial_average_us                             | 업종 평균 레이더 차트
 
 
-
-
+# 기본 정보
 
 ## overview_us
 
-기본 정보/s12_us_stock/overview_us
+### 화면 예시
+<p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/overview.png" width=700 alt="overview"></p>
 
 > payload:
 
@@ -91,44 +81,28 @@ POST | radar_financial_average_us                             | 업종 평균 �
 > Response:
 
 ```json
-{"result": {
-    "chart": {
+{"result": {"chart": {
       "series": [{
-          "data": [
-            [1546387200000, 39.48],
-            [..., ...],
-            [1593475200000, 91.2]],
-          "name": "애플 (USD)",
-          "step": false,
-          "type": "line",
-          "yAxisIndex": 0
-        }]
-    },
+          "data": [[1546387200000, 39.48], [..., ...], [1593475200000, 91.2]],
+          "name": "애플 (USD)", "step": false, "type": "line", "yAxisIndex": 0
+        }]},
     "key_value": {
-      "52주최고": 198.23,
-      "52주최고 날짜": "20230719",
-      "52주최저": 124.17,
-      "52주최저 날짜": "20230103",
-      "EPS": 5.8968,
-      "INDEX_NAME": "나스닥 증권거래소",
-      "PBR": 48.55289,
-      "PER": 32.8348,
-      "symbol": "AAPL",
-      "기준가": 192.75,
-      "기준일": "20230725",
-      "등락": 0.87,
-      "등락률": 0.4514,
+      "52주최고": 198.23, "52주최고 날짜": "20230719",
+      "52주최저": 124.17, "52주최저 날짜": "20230103",
+      "EPS": 5.8968, "INDEX_NAME": "나스닥 증권거래소", "PBR": 48.55289, "PER": 32.8348,
+      "symbol": "AAPL", "기준가": 192.75, "기준일": "20230725",
+      "등락": 0.87, "등락률": 0.4514,
       "로이터 업종": "컴퓨터, 전화 및 가전제품",
-      "배당수익률(시가)": 0.4981,
-      "상장주식수": 15728702000,
-      "시가총액": 3031707310500,
-      "자본금": 0.15723,
-      "자본잉여금": 69567.84277,
+      "배당수익률(시가)": 0.4981, "상장주식수": 15728702000,
+      "시가총액": 3031707310500, "자본금": 0.15723, "자본잉여금": 69567.84277,
       "종가": 193.62
     }
   }
 }
 ```
+
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/overview_us`
 
 ### Query Parameters
 
@@ -145,7 +119,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 
 ## business_summary_us
-기업 개요, 현황 정보/s12_us_stock/business_summary_us
 
 > payload:
 
@@ -166,6 +139,9 @@ POST | radar_financial_average_us                             | 업종 평균 �
 }
 ```
 
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/business_summary_us`
+
 ### Query Parameters
 
  Parameter     | type    | Description 
@@ -176,7 +152,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 
 ## radar_financial_us
-레이더 차트
 
 > payload:
 
@@ -199,11 +174,8 @@ POST | radar_financial_average_us                             | 업종 평균 �
       },
       "series": [{
           "data": [{
-              "name": "애플",
-              "value": [2, 2.5, 2, 5, 1.5, 1.5]
-            }],
-          "type": "radar"
-        }]
+              "name": "애플", "value": [2, 2.5, 2, 5, 1.5, 1.5]}],
+          "type": "radar"}]
     },
     "key_value": {
       "dividend": "낮은편",
@@ -218,6 +190,11 @@ POST | radar_financial_average_us                             | 업종 평균 �
 }
 ```
 
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/radar_financial_us`
+
+레이더 차트
+
 ### Query Parameters
 
  Parameter     | type    | Description 
@@ -230,7 +207,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 
 ## radar_financial_financial_average_us
-업종 평균 레이더 차트
 
 > payload:
 
@@ -254,11 +230,8 @@ POST | radar_financial_average_us                             | 업종 평균 �
         ]},
       "series": [{
           "data": [{
-              "name": "애플",
-              "value": [0.909091, 2.60227, 2.36364, 2.26136, 3.90909, 1.85227]
-            }],
-          "type": "radar"
-        }]
+              "name": "애플", "value": [0.909091, 2.60227, 2.36364, 2.26136, 3.90909, 1.85227]}],
+          "type": "radar"}]
     },
     "key_value": {
       "dividend": "매우 낮은편",
@@ -273,6 +246,10 @@ POST | radar_financial_average_us                             | 업종 평균 �
 }
 ```
 
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/radar_financial_financial_average_us`
+
+
 ### Query Parameters
 
  Parameter     | type    | Description 
@@ -286,8 +263,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 
 ## correlation_company_graph_info_us
-연관 기업 분석 그래프 DB - 그래프 DB 연관 기업 분석
-
 
 > payload:
 
@@ -301,24 +276,11 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 ```json
 {"result": {
-    "company": {
-      "node_id": "3|2|1|1|AAPL",
-      "종목코드": "AAPL",
-      "회사명": "애플"
-    },
-    "keywords": {
-      "keyword_list": [
-        "아이패드", "팀쿡", "스마트폰", "스티브 잡스", "애플", "아이폰", "ESG", "자율주행", "전기차"
-      ]
-    },
-    "market_type": {
-      "시장구분": "나스닥"
-    },
-    "selected_keyword": {
-      "keyword": "아이패드"
-    },
-    "table": {
-      "columns": [
+    "company": {"node_id": "3|2|1|1|AAPL", "종목코드": "AAPL", "회사명": "애플"},
+    "keywords": {"keyword_list": [ "아이패드", "팀쿡", "스마트폰", "스티브 잡스", "애플", "아이폰", "ESG", "자율주행", "전기차"]},
+    "market_type": {"시장구분": "나스닥"},
+    "selected_keyword": {"keyword": "아이패드"},
+    "table": {"columns": [
         {"caption": "종목코드", "dataField": "symbol", "dataType": "string"},
         {"caption": "종목명", "dataField": "name_ko_short", "dataType": "string"},
         {"caption": "시가총액(억원)", "dataField": "market_cap", "dataType": "number"},
@@ -334,22 +296,16 @@ POST | radar_financial_average_us                             | 업종 평균 �
         {"caption": "국가", "dataField": "country", "dataType": "string"}
       ],
       "rows": [
-        {
-          "country": "1",
-          "keywords": [
-            "아이패드", "팀쿡", "스마트폰", "스티브 잡스", "애플", "아이폰", "ESG", "자율주행", "전기차"
-          ],
+        {"country": "1",
+          "keywords": ["아이패드", "팀쿡", "스마트폰", "스티브 잡스", "애플", "아이폰", "ESG", "자율주행", "전기차"],
           "market_cap": 39002326, "market_cap_usd": 3045391340000,
           "name_ko_short": "애플", "node_id_stock": "3|2|1|1|AAPL",
           "pct_1d": 0.45, "pct_1m": 4.51, "pct_1w": -0.06, "pct_1y": 26.59, "pct_3m": 18.23, "pct_6m": 36.49, "pct_ytd": 54.81, "price": 194,
           "symbol": "AAPL"
         },
-        {
-          "country": "0",
-          "keywords": [
-            "스마트폰", "패키지솔루션", "테슬라카메라모듈", "카메라", "테슬라", "코로나19", "전장용MLCC",
-            "적층세라믹콘덴서", "자율주행", "아이패드", "애플", "스마트폰부품", "무선충전기", "무선충전", "車전장", "LED", "IT부품", "5G", "수동소자", "콘덴서", "MLCC", "카메라모듈"
-          ],
+        {"country": "0",
+          "keywords": ["스마트폰", "패키지솔루션", "테슬라카메라모듈", "카메라", "테슬라", "코로나19", "전장용MLCC", 
+            "적층세라믹콘덴서", "자율주행", "아이패드", "애플", "스마트폰부품", "무선충전기", "무선충전", "車전장", "LED", "IT부품", "5G", "수동소자", "콘덴서", "MLCC", "카메라모듈"],
           "market_cap": 107633, "market_cap_usd": null,
           "name_ko_short": "삼성전기", "node_id_stock": "3|1|1|1|009150",
           "pct_1d": -3.22, "pct_1m": -0.21, "pct_1w": -5.94, "pct_1y": 1.48, "pct_3m": 3.59, "pct_6m": -1.97, "pct_ytd": 8.75, "price": 144100,
@@ -365,6 +321,12 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 ```
 
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/correlation_company_graph_info_us`
+
+연관 기업 분석 그래프 DB - 그래프 DB 연관 기업 분석
+
+
 ### Query Parameters
 
  Parameter     | type    | Description 
@@ -374,6 +336,10 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 
 ## correlation_company_table_us
+
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/correlation_company_table_us`
+
 연관 기업 분석 그래프 DB - 그래프 DB 미국 연관 기업 분석 확장, 업종 삭제 & 키워드 기반
 
 
@@ -392,14 +358,9 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 ```json
 {"result": {
-    "node_id_company": {
-      "종목노드ID": "3|2|1|1|AAPL"
-    },
-    "selected_keywords": {
-      "keywords": ["아이폰"]
-    },
-    "table": {
-      "columns": [
+    "node_id_company": {"종목노드ID": "3|2|1|1|AAPL"},
+    "selected_keywords": {"keywords": ["아이폰"]},
+    "table": {"columns": [
         {"caption": "종목코드", "dataField": "symbol", "dataType": "string"},
         {"caption": "종목명", "dataField": "name_ko_short", "dataType": "string"},
         {"caption": "시가총액(억원)", "dataField": "market_cap", "dataType": "number"},
@@ -415,22 +376,16 @@ POST | radar_financial_average_us                             | 업종 평균 �
         {"caption": "국가", "dataField": "country", "dataType": "string"}
       ],
       "rows": [
-        {
-          "country": "1",
-          "keywords": [
-            "아이패드", "팀쿡", "스마트폰", "스티브 잡스", "애플", "아이폰", "ESG", "자율주행", "전기차"
-          ],
+        {"country": "1",
+          "keywords": ["아이패드", "팀쿡", "스마트폰", "스티브 잡스", "애플", "아이폰", "ESG", "자율주행", "전기차"],
           "market_cap": 39002326, "market_cap_usd": 3045391340000,
           "name_ko_short": "애플", "node_id_stock": "3|2|1|1|AAPL",
           "pct_1d": 0.45, "pct_1m": 4.51, "pct_1w": -0.06, "pct_1y": 26.59, "pct_3m": 18.23, "pct_6m": 36.49, "pct_ytd": 54.81, 
           "price": 194, "symbol": "AAPL"
         },
-        {
-          "country": "0",
-          "keywords": [
-            "마이크론", "XR", "화웨이", "헬스케어", "폴더블폰", "파운드리", "태블릿", "타이젠", "퀄컴AP", "퀄컴", "카메라모듈", "전기전자", "자율주행", "이재용", "이미지센서", "웨이퍼", "애플", "아이폰", "시스템반도체", "스마트기기", 
-            "서버", "TV", "배터리폭발", "무선통신", "메타버스", "메모리반도체", "메모리", "딥러닝", "도시바", "PC", "LCD", "IT부품", "D램", "AP", "OLED", "6G", "5G", "3D낸드", "가전기기", "스마트폰", "디스플레이", "반도체"
-          ],
+        {"country": "0",
+          "keywords": ["마이크론", "XR", "화웨이", "헬스케어", "폴더블폰", "파운드리", "태블릿", "타이젠", "퀄컴AP", "퀄컴", "카메라모듈", "전기전자", "자율주행", "이재용", "이미지센서", "웨이퍼", "애플", "아이폰", "시스템반도체", "스마트기기", 
+            "서버", "TV", "배터리폭발", "무선통신", "메타버스", "메모리반도체", "메모리", "딥러닝", "도시바", "PC", "LCD", "IT부품", "D램", "AP", "OLED", "6G", "5G", "3D낸드", "가전기기", "스마트폰", "디스플레이", "반도체"],
           "market_cap": 4166908, "market_cap_usd": null,
           "name_ko_short": "삼성전자", "node_id_stock": "3|1|1|1|005930",
           "pct_1d": -0.29, "pct_1m": -3.59, "pct_1w": -2.65, "pct_1y": 13.13, "pct_3m": 8.89, "pct_6m": 9.23, "pct_ytd": 25.77,
@@ -438,8 +393,7 @@ POST | radar_financial_average_us                             | 업종 평균 �
         },
         {"...":  "..."}
       ],
-      "table_length": 15
-    }
+      "table_length": 15}
   },
   "success": true
 }
@@ -454,7 +408,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
  search_keywords | list    | 검색 키워드 리스트  
 
 # 주요 산업 지표
-종목이 소속된 업종(로이터->WI26매칭)의 차트북 반환
 ## 주요 산업 지표
 
 > payload:
@@ -471,50 +424,32 @@ POST | radar_financial_average_us                             | 업종 평균 �
 {"result": {
     "chartbook": [{
         "book_id": 16, "chart_id": 0,
-        "legend": {
-          "bottom": "bottom",
-          "show": true
-        },
+        "legend": {"bottom": "bottom", "show": true},
         "series": [{
-            "book_id": 16, "chart_id": 0,
-            "color": "#7bb142",
-            "data": [],
+            "book_id": 16, "chart_id": 0, "color": "#7bb142", "data": [],
             "name": "가전 수출액(천USD)", "node_id": "1|4|1|2|3|31", "series_id": 0,
             "tag": "매크로", "type": "bar", "yAxisIndex": 0},
-          {"book_id": 16, "chart_id": 0,
-            "color": "#2b5034",
-            "data": [],
-            "name": "YoY(%)", "node_id": "1|4|1|2|3|32", "series_id": 1,
-            "showSymbol": true, "step": false,
+          {"book_id": 16, "chart_id": 0, "color": "#2b5034", "data": [],
+            "name": "YoY(%)", "node_id": "1|4|1|2|3|32", "series_id": 1, "showSymbol": true, "step": false,
             "tag": "매크로", "type": "line", "yAxisIndex": 1}],
-        "title": [{
-            "left": "center",
-            "subtext": "부제목",
-            "text": "가전제품 수출"},
-          { "left": "right",
-            "text": "출처: 한국무역협회",
-            "textStyle": {
-              "color": "gray", "fontSize": 13, "fontWeight": "lighter"},
-            "top": "bottom"}],
-        "tooltip": {
-          "formatter": "abcde", "trigger": "none"
-        },
-        "xAxis": {
-          "max": 1690416000000, "min": 1595808000000, "type": "time"
-        },
-        "yAxis": [{
-            "axisLabel": {"formatter": "{value}"},
-            "book_id": 16, "chart_id": 0,
-            "max": null, "min": null, "position": "left", "type": "value"
-          },
-          {"axisLabel": {"formatter": "{value}"},
-            "book_id": 16, "chart_id": 0, 
+        "title": [{"left": "center", "subtext": "부제목", "text": "가전제품 수출"}, 
+          {"left": "right", "text": "출처: 한국무역협회", "textStyle": {"color": "gray", "fontSize": 13, "fontWeight": "lighter"}, "top": "bottom"}],
+        "tooltip": {"formatter": "abcde", "trigger": "none"},
+        "xAxis": {"max": 1690416000000, "min": 1595808000000, "type": "time"},
+        "yAxis": [{"axisLabel": {"formatter": "{value}"}, "book_id": 16, "chart_id": 0, 
+          "max": null, "min": null, "position": "left", "type": "value"}, 
+          {"axisLabel": {"formatter": "{value}"}, "book_id": 16, "chart_id": 0, 
             "max": 100, "min": -100, "position": "right", "type": "value"
           }]}]
   },
   "success": true
 }
 ```
+
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/chartbook_us`
+
+종목이 소속된 업종(로이터->WI26매칭)의 차트북 반환
 
 ### Query Parameters
 
@@ -538,10 +473,8 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 
 # 상관관계
-종목의 종가와 매크로 변수의 일대다 상관계수 반환
+
 ## 상관관계
-### Request URL
-`http://dev-ra.shinyoung.com/api/s12_us_stock/correlation_price_us`
 
 > payload:
 
@@ -566,8 +499,7 @@ POST | radar_financial_average_us                             | 업종 평균 �
       "rows": [
         {
           "corr": 0.2374338395465267,
-          "data_table_a": "ossy_gfinance_data.StockDaily", "data_table_b": "ossy_finance_data.GlobalIndexRefinitivDaily",
-          "n_samples": 1974,
+          "data_table_a": "ossy_gfinance_data.StockDaily", "data_table_b": "ossy_finance_data.GlobalIndexRefinitivDaily", "n_samples": 1974,
           "name_a": "애플", "name_b": "CRB TR 지수",
           "node_id_a": "3|2|1|1|AAPL", "node_id_b": "1|3|1|1",
           "symbol_a": "AAPL", "symbol_b": ".TRCCRBTR",
@@ -575,8 +507,7 @@ POST | radar_financial_average_us                             | 업종 평균 �
         },
         {
           "corr": -0.07115988902533889,
-          "data_table_a": "ossy_gfinance_data.StockDaily", "data_table_b": "ossy_finance_data.CofixDaily",
-          "n_samples": 74,
+          "data_table_a": "ossy_gfinance_data.StockDaily", "data_table_b": "ossy_finance_data.CofixDaily", "n_samples": 74,
           "name_a": "애플", "name_b": "COFIX 금리 [잔액기준]",
           "node_id_a": "3|2|1|1|AAPL", "node_id_b": "1|1|2|3|1",
           "symbol_a": "AAPL", "symbol_b": "1",
@@ -589,6 +520,10 @@ POST | radar_financial_average_us                             | 업종 평균 �
 }
 ```
 
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/correlation_price_us`
+
+종목의 종가와 매크로 변수의 일대다 상관계수 반환
 
 ### Query Parameters
 
@@ -606,8 +541,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
 # Financial Highlight
 
 ## 실적 요약
-### Request URL
-`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_summary_us`
 
 > payload:
 
@@ -642,6 +575,12 @@ POST | radar_financial_average_us                             | 업종 평균 �
   "success": true
 }
 ```
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_summary_us`
+
+### 화면 예시
+<p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/fin_summary.png" width=700 alt="fin_summary"></p>
+
 
 ### Query Parameters
 
@@ -654,8 +593,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 
 ## 주요 재무 특이사항
-### Request URL
-`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_statement_anomaly_detection_us`
 
 > payload:
 
@@ -684,6 +621,12 @@ POST | radar_financial_average_us                             | 업종 평균 �
 }
 ```
 
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_statement_anomaly_detection_us`
+
+### 화면 예시
+<p align="center"><img src="/Users/yeseul/PycharmProjects/slate/source/images/fin_anomaly.png" width=700 alt="fin_anomaly"></p>
+
 ### Query Parameters
 
  Parameter     | type    | Default | Description 
@@ -702,8 +645,6 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 
 ## 주요 재무 특이사항 - 상세 조회
-### Request URL
-`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_statement_anomaly_detection_detail_graph_us`
 
 > payload:
 
@@ -734,6 +675,9 @@ POST | radar_financial_average_us                             | 업종 평균 �
   "success": true
 }
 ```
+
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_statement_anomaly_detection_detail_graph_us`
 
 ### Query Parameters
 
@@ -794,6 +738,76 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 
 ## 재무제표 통합
+### Request URL
+`http://dev-ra.shinyoung.com/api/s12_us_stock/financial_statement_us`
+
+> payload:
+
+```json
+{
+  "node_id_stock": "3|2|1|1|AAPL",
+  "freq": "Y",
+  "n_year": "10"
+}
+```
+
+> Response:
+
+```json
+{"result": {
+    "chart_a": {"...": "..."},
+    "chart_a_four": {"...": "..."},
+    "chart_a_three": {"...": "..."},
+    "chart_a_two": {"...": "..."},
+    "chart_b": {"...": "..."},
+    "chart_c": {"...": "..."},
+    "key_value": {
+      "ROE_average_values": 113.12634499999999,
+      "debt_ratio_average": 182.85629999999998,
+      "dividend_yield_average_values": 0.5581725,
+      "operating_income_margin_average_values": 27.1976125,
+      "pbr_average": 39.9913775,
+      "per_average": 35.43549,
+      "sales_pct_change": 0.14867695264734437
+    },
+    "table": {
+      "columns": [
+        {"caption": "구분(달러)", "dataField": "index", "dataType": "string"},
+        {"caption": "연간", "columns": [{
+              "caption": "2016",
+              "columns": [{
+                  "caption": "201609", "columns": [], "dataField": "201609", "dataType": "number"}],
+              "dataType": "number"
+            },
+            {"...": "..."},
+            {
+              "caption": "2022",
+              "columns": [{
+                  "caption": "202209", "columns": [], "dataField": "202209", "dataType": "number"}],
+              "dataType": "number"
+            }]}
+      ],
+      "rows": [
+        {"201609": null, "201709": null, "201809": null, "201909": 5.9133, "202009": 3.84873, "202109": 3.84068, "202209": 3.17824, "index": "BPS"},
+        {"201609": null, "201709": null, "201809": null, "201909": 0.75, "202009": 0.795, "202109": 0.85, "202209": 0.9, "index": "주당배당금"},
+        {"...": "..."},
+        {"201609": null, "201709": null, "201809": null, "201909": 62.1822, "202009": 61.7668, "202109": 58.2206, "202209": 56.6904, "index": "매출원가율"},
+        {"201609": null, "201709": null, "201809": null, "201909": 7.0126, "202009": 7.255, "202109": 6.0066, "202209": 6.3637, "index": "판관비율"}
+      ]
+    }},
+  "success": true
+}
+```
+
+### Query Parameters
+
+ Parameter     | type    | Default | Description 
+---------------|---------|---------|-------------
+ sess_mysql    | Session |         | MySQL 세션    
+ sess_presto   | Session |         | Presto 세션   
+ node_id_stock | str     |         | 종목 node id  
+ item          | str     |         | 국문 재무계정명    
+ threshold     | int     | 1.6     | Z-score 임계값 
 
 
 # 주주 정보
@@ -803,216 +817,3 @@ POST | radar_financial_average_us                             | 업종 평균 �
 
 
 # [스크리너]
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
